@@ -4,11 +4,7 @@ pipeline {
     tools {
 		jdk 'Java17'
 	}
-
-    environment {
-        pwd = credentials('DOCKER_HUB_PWD')
-    }
-
+	
     stages {
   	stage('Maven Install') {
     	agent {
@@ -29,7 +25,7 @@ pipeline {
     stage('Docker Push') {
     	agent any
       steps {
-      	withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: pwd, usernameVariable: 'simomaccio')]) {
+      	withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker push simomaccio/jenkins-test:latest'
         }
