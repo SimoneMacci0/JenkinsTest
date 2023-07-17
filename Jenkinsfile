@@ -6,7 +6,7 @@ pipeline {
 	}
 
     environment {
-        pwd = credentials(DOCKER_HUB_PWD)
+        pwd = credentials('DOCKER_HUB_PWD')
     }
 
     stages {
