@@ -3,7 +3,7 @@ pipeline {
 
     tools {
 		jdk 'Java17'
-	        docker 'docker'
+	        dockerTool 'docker'
 	}
 
     environment {
